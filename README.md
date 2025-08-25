@@ -1,2 +1,29 @@
-# labs-transcricao-grupo-2
-Transcrição de áudio por IA (Grupo 2)
+# Laboratório Experimental - Sistemas de Informação ESPM
+
+<p align="center">
+    <a href="https://www.espm.br/cursos-de-graduacao/sistemas-de-informacao/"><img src="https://raw.githubusercontent.com/tech-espm/misc-template/main/logo.png" alt="Sistemas de Informação ESPM" style="width: 375px;"/></a>
+</p>
+
+# Gerenciamento de PGT
+
+### 2025-02
+
+## Integrantes
+- [Nome](https://github.com/xxx)
+- [Nome](https://github.com/xxx)
+
+## Cliente do Projeto
+
+ESPM
+
+## Descrição do Projeto
+
+Transcrição de áudio por IA.
+
+# Licença
+
+Este projeto é licenciado sob a [MIT License](https://github.com/tech-espm/labs-transcricao-grupo-2/blob/main/LICENSE).
+
+<p align="right">
+    <a href="https://www.espm.br/cursos-de-graduacao/sistemas-de-informacao/"><img src="https://raw.githubusercontent.com/tech-espm/misc-template/main/logo-si-512.png" alt="Sistemas de Informação ESPM" style="width: 375px;"/></a>
+</p>
