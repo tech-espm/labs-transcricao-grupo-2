@@ -4,7 +4,7 @@
     <a href="https://www.espm.br/cursos-de-graduacao/sistemas-de-informacao/"><img src="https://raw.githubusercontent.com/tech-espm/misc-template/main/logo.png" alt="Sistemas de Informação ESPM" style="width: 375px;"/></a>
 </p>
 
-# Gerenciamento de PGT
+# Transcrição de Áudio por IA
 
 ### 2025-02
 
