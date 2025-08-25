@@ -1,0 +1,8 @@
+openai
+dotenv
+whisper
+requests
+flask
+fastapi
+ffmpeg-python
+whisper

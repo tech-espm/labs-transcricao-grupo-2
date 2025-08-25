@@ -9,8 +9,9 @@
 ### 2025-02
 
 ## Integrantes
-- [Nome](https://github.com/xxx)
-- [Nome](https://github.com/xxx)
+- [Luzivania de Jesus Bonfim](https://github.com/bonfim1)
+- [Maria Gabriela Vieira dos Santos](https://github.com/mgabriel4)
+- [Mateus Carnevale Colmeal](https://github.com/colmeal)
 
 ## Cliente do Projeto
 
