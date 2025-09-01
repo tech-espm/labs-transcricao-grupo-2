@@ -40,3 +40,19 @@ with open("transcricao.json", "r", encoding="utf-8") as arquivo_json:
 for word in transcript["words"]:
 	print(f"{(word['start'] * 1000):.0f}\t{(word['end'] * 1000):.0f}\t{word['word']}")
 
+
+sentencas = []
+sentenca_atual = []
+
+for i, word in enumerate(transcript["words"]):
+    if i == 0 or word["start"] == transcript["words"][i-1]["end"]:
+        sentenca_atual.append(word["word"])
+    else:
+        if sentenca_atual:
+            sentencas.append(" ".join(sentenca_atual))
+        sentenca_atual = [word["word"]]
+if sentenca_atual:
+    sentencas.append(" ".join(sentenca_atual))
+
+print(sentencas)
+
