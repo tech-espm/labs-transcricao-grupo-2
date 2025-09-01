@@ -1,17 +1,42 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os 
+import json
 
 load_dotenv()
 
+"""
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 audio_file = open("media/uploads/audio.ogg", "rb")
 
-transcription = client.audio.transcriptions.create(
-  file=audio_file,
-  model="whisper-1",
-  response_format="verbose_json",
-  timestamp_granularities=["word", "segment"]
-)
+def transcribe_audio(file):
+  transcription = client.audio.transcriptions.create(
+      file=file,
+      model="whisper-1",
+      response_format="verbose_json",
+      timestamp_granularities=["word", "segment"]
+  )
+  return transcription
 
-print(transcription.words, transcription.segments)
+#para criar o mock up
+with open("transcricao.json", "w", encoding="utf-8") as arquivo_json:
+    lista = []
+    for word in transcribe_audio(audio_file).words:
+        lista.append({
+            "word": word.word,
+            "start": word.start,
+            "end": word.end
+        })
+    arquivo_json.write(json.dumps(lista))
+"""
+
+transcript = {
+    "words": []
+}
+
+with open("transcricao.json", "r", encoding="utf-8") as arquivo_json:
+	transcript["words"] = json.loads(arquivo_json.read())
+ 
+for word in transcript["words"]:
+	print(f"{(word['start'] * 1000):.0f}\t{(word['end'] * 1000):.0f}\t{word['word']}")
+
