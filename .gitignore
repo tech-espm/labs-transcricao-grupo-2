@@ -2,3 +2,4 @@ env/
 .env
 *.ogg
 media/
+__pycache__/
