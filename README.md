@@ -55,9 +55,9 @@ Este projeto mostra como *converter fala em texto* usando a API da OpenAI. Ele p
 
 Instale as dependências:
 
-bash
+```bash
 pip install openai python-dotenv
-
+```
 
 ---
 
@@ -65,9 +65,9 @@ pip install openai python-dotenv
 
 Crie um arquivo *.env* na raiz do projeto com sua chave:
 
-env
+```env
 OPENAI_API_KEY=sua_chave_aqui
-
+```
 
 > ⚠️ Importante: nunca compartilhe sua chave de API em repositórios públicos.
 
@@ -78,9 +78,10 @@ OPENAI_API_KEY=sua_chave_aqui
 1. Coloque seu arquivo de áudio na raiz do projeto, por exemplo audio.ogg.
 2. Rode o script no terminal:
 
-   bash
+   ```bash
    python main.py
-   
+   ```
+
 3. A saída no terminal mostrará:
 
    * *Transcrição:* texto no idioma original do áudio.
@@ -102,8 +103,8 @@ OPENAI_API_KEY=sua_chave_aqui
 
 #### 📊 Diagrama simplificado
 
-mermaid
-flowchart LR
+```mermaid flowchart LR
+
     A[Usuário] --> B[Arquivo de Áudio]
     B --> C[Script Python]
     C -->|API OpenAI| D[Transcrição]
@@ -111,9 +112,8 @@ flowchart LR
     D --> F[Texto Original]
     E --> G[Texto em Inglês]
 
-
+```
 ---
-
 #### 📌 Observações
 
 * O arquivo de áudio pode estar em formatos comuns: .ogg, .mp3, .wav.
