@@ -23,7 +23,7 @@ def upload_audio():
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
     filepath = os.path.join(UPLOAD_FOLDER, file.filename)
-    file.save(filepath)
+    file.filename.save(filepath)
 
     return jsonify({'message': 'File uploaded successfully', 'filepath': filepath}), 200
 
