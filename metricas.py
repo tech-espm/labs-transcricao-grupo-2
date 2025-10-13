@@ -68,5 +68,5 @@ def resumo_24h():
         "taxa_sucesso_24h": round(taxa_sucesso_24h(), 4),
     }
 
-def metrics_endpoint():
+def metricas_endpoint():
     return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
