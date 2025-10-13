@@ -5,7 +5,7 @@ from werkzeug.exceptions import HTTPException
 import os
 
 app = Flask(__name__)
-app.secret_key = 'dev'
+app.secret_key = os.environ.get('SECRET_KEY') or os.urandom(24)
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
