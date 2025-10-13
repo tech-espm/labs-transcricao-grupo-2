@@ -6,6 +6,26 @@ import os
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY') or os.urandom(24)
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+@app.route('/')
+def index():
+    hoje = datetime.today().strftime('%Y-%m-%d')
+    return render_template('index/index.html', hoje=hoje)
+
+# Endpoint para upload de áudio
+@app.route('/upload-audio', methods=['POST'])
+def upload_audio():
+    if 'audio' not in request.files:
+        return jsonify({'error': 'No audio file provided'}), 400
+    file = request.files['audio']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    filepath = os.path.join(UPLOAD_FOLDER, file.filename)
+    file.filename.save(filepath)
+
+    return jsonify({'message': 'File uploaded successfully', 'filepath': filepath}), 200
 
 if __name__ == '__main__':
     app.run(host=config.host, port=config.port, debug=True)

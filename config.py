@@ -8,4 +8,3 @@ DB_PASSWORD = os.environ.get('DB_PASSWORD')
 DB_HOST = os.environ.get('DB_HOST')
 DB_NAME = os.environ.get('DB_NAME')
 conexao_banco = f'mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
-url_api = 'https://api.exemplo.com'
