@@ -5,3 +5,4 @@ requests
 flask
 ffmpeg-python
 whisper
+prometheus_client>=0.20
