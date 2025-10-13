@@ -1,0 +1,5 @@
+Collecting prometheus_client
+  Using cached prometheus_client-0.23.1-py3-none-any.whl.metadata (1.9 kB)
+Using cached prometheus_client-0.23.1-py3-none-any.whl (61 kB)
+Installing collected packages: prometheus_client
+Successfully installed prometheus_client-0.23.1
