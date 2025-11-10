@@ -5,7 +5,8 @@ from flask import Response
 import threading
 
 # --- Contadores acumulados (Prometheus) ---
-#Prometheus é uma biblioteca que transforma seu código Flask em um sistema monitorável, permitindo acompanhar em tempo real quantas operações deram certo, quantas falharam e qual é a taxa de sucesso.
+#Prometheus é uma biblioteca que transforma seu código Flask em um sistema monitorável, permitindo acompanhar em tempo real quantas operações deram certo, 
+# quantas falharam e qual é a taxa de sucesso.
 UPLOADS_VALIDOS = Counter(
     "uploads_validos_total",
     "Quantidade de uploads que passaram na validacao"
