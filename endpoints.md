@@ -3,8 +3,8 @@
 Este projeto permite fazer upload de áudios, transcrevê-los para texto e traduzir para outros idiomas. Este documento está focado em falar dos endpoints futuros deste projeto.
 
 ## 🚀 Endpoints da API
-1. Upload de Áudio
 
+1. Upload de Áudio
 **POST /upload**
 
 Descrição: Faz o upload de um arquivo de áudio para o servidor.
@@ -24,7 +24,6 @@ Resposta:
 }
 
 2. Transcrição de Áudio
-
 **POST /transcrever**
 
 Descrição: Transcreve o áudio enviado anteriormente.
