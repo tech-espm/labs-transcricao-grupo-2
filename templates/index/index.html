@@ -1,15 +1,99 @@
-"{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
-{% block body %} 
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Transcrição de Áudio com OpenAI</h1>
 
-<div class="container mt-5"> 
-    <h1 class="mb-4">Transcrição de Áudio com OpenAI</h1> 
-    <form action="/transcribe" method="post" enctype="multipart/form-data"> 
-        <div class="mb-3"> 
-            <label for="audioFile" class="form-label">Selecione o arquivo de áudio:</label> 
-            <input class="form-control" type="file" id="audioFile" name="audioFile" accept="audio/*" required> 
-        </div> 
-        <button type="submit" class="btn btn-primary">Transcrever</button> 
-    </form> 
-</div> 
-{% endblock %}"
+    <form id="uploadForm" action="/upload-audio" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+        <label for="audioFile" class="form-label">Selecione o arquivo de áudio:</label>
+        <input class="form-control" type="file" id="audioFile" name="audio" accept="audio/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Transcrever</button>
+    </form>
+
+    <hr class="my-4">
+
+    <h4>🎙️ Ou grave seu áudio agora:</h4>
+    <div class="mb-3">
+        <button id="recordBtn" class="btn btn-danger">🎤 Iniciar gravação</button>
+        <button id="stopBtn" class="btn btn-secondary" disabled>⏹️ Parar</button>
+    </div>
+
+    <audio id="player" controls class="mt-3 d-none"></audio>
+
+    <div id="transcriptionResult" class="mt-4 p-3 border rounded bg-light" style="display:none;">
+        <h5>📝 Transcrição:</h5>
+        <p id="transcriptionText" style="white-space: pre-wrap;"></p>
+    </div>
+</div>
+
+<script>
+  let mediaRecorder;
+  let audioChunks = [];
+
+  const recordBtn = document.getElementById("recordBtn");
+  const stopBtn = document.getElementById("stopBtn");
+  const player = document.getElementById("player");
+  const transcriptionDiv = document.getElementById("transcriptionResult");
+  const transcriptionText = document.getElementById("transcriptionText");
+
+  recordBtn.addEventListener("click", async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    audioChunks = [];
+
+    mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
+
+    mediaRecorder.onstop = async () => {
+        const blob = new Blob(audioChunks, { type: "audio/webm" });
+        const file = new File([blob], "gravacao.webm", { type: "audio/webm" });
+
+        // mostra player
+        player.src = URL.createObjectURL(blob);
+        player.classList.remove("d-none");
+
+        // envia pro backend
+        const formData = new FormData();
+        formData.append("audio", file);
+        formData.append("apiKey", document.getElementById("apiKey").value);
+
+        // limpa resultados anteriores
+        transcriptionDiv.style.display = "none";
+        transcriptionText.textContent = "Processando transcrição...";
+
+        const response = await fetch("/upload-audio", {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await response.json();
+
+        // exibe o resultado
+        transcriptionDiv.style.display = "block";
+
+        if (result.error) {
+            transcriptionText.textContent = "❌ Erro: " + result.error;
+        } else if (result.transcription) {
+            transcriptionText.textContent = result.transcription;
+        } else if (result.message && result.filepath) {
+            transcriptionText.textContent = result.message;
+        } else if (result.texto) {  // compatível com /transcrever
+            transcriptionText.textContent = result.texto;
+        } else {
+            transcriptionText.textContent = JSON.stringify(result, null, 2);
+        }
+    };
+
+    mediaRecorder.start();
+    recordBtn.disabled = true;
+    stopBtn.disabled = false;
+  });
+
+  stopBtn.addEventListener("click", () => {
+    mediaRecorder.stop();
+    recordBtn.disabled = false;
+    stopBtn.disabled = true;
+  });
+</script>
+{% endblock %}
