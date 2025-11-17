@@ -9,14 +9,15 @@ html, body {
 }
 
 :root {
-	--cor-1: #b40a10; /* vermelho escuro */
-	--cor-2: #ed1d24; /* vermelho primário */
-	--cor-3: #51ace4; /* azul claro */
-	--cor-4: #3477a6; /* azul médio */
-	--cor-5: #215274; /* azul escuro */
-	--cor-6: #0097a7; /* ciano */
-	--cor-7: #00838f; /* ciano escuro */
-	--cor-8: #006064; /* teal profundo */
+	--cor-1: #b40a10; 
+	--cor-2: #ed1d24; 
+	--cor-3: #51ace4; 
+	--cor-4: #3477a6; 
+	--cor-5: #014f86;
+	--cor-6: #215274; 
+	--cor-7: #01497c; 
+	--cor-8: #013a63; 
+	--cor-9: #012a4a; 
 
 	--bg: #f7fbff;
 	--text: #0f172a;
