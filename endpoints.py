@@ -20,17 +20,11 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 ARQUIVOS = {}
 
-# ================================================================
-# 🌐 Rotas Principais
-# ================================================================
 @app.route('/')
 def index():
     hoje = datetime.today().strftime('%Y-%m-%d')
     return render_template('index/index.html', hoje=hoje)
 
-# ================================================================
-# 🎧 UPLOAD + PROCESSAMENTO DIRETO (já implementado)
-# ================================================================
 @app.route('/upload-audio', methods=['POST'])
 def upload_audio():
     """
@@ -67,10 +61,6 @@ def upload_audio():
         registrar_processamento(False)
         return jsonify({"error": f"Falha no processamento: {str(e)}"}), 500
 
-
-# ================================================================
-# 📂 UPLOAD SEPARADO (para fluxo com file_id)
-# ================================================================
 @app.route('/upload', methods=['POST'])
 def upload():
     """Upload simples (sem processamento)."""
@@ -92,10 +82,6 @@ def upload():
         "message": "Upload realizado com sucesso"
     }), 200
 
-
-# ================================================================
-# 📝 TRANSCRIÇÃO A PARTIR DE FILE_ID
-# ================================================================
 @app.route('/transcrever', methods=['POST'])
 def transcrever():
     """Transcreve um arquivo já enviado via /upload."""
@@ -122,9 +108,6 @@ def transcrever():
         return jsonify({"error": str(e)}), 500
 
 
-# ================================================================
-# 🌍 TRADUÇÃO DE TEXTO
-# ================================================================
 def _translate_text(texto_src: str, target_lang: str) -> str:
     if not target_lang or target_lang.lower() in ("en", "en-us", "english"):
         return texto_src
@@ -166,10 +149,6 @@ def traduzir():
         registrar_processamento(False)
         return jsonify({"error": str(e)}), 500
 
-
-# ================================================================
-# 🎧 TRADUÇÃO DIRETA DE ÁUDIO (para inglês → e outro idioma)
-# ================================================================
 @app.route('/translate-audio', methods=['POST'])
 def translate_audio():
     ok_key, msg_key, _ = validar_chave_api()

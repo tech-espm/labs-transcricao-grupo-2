@@ -128,3 +128,9 @@ a{
 .fa{
 	font-size: 1.5rem;
 }
+
+.btn-primary {
+	background-color: var(--cor-6);
+	border-color: var(--cor-6);
+	color: white;
+}
