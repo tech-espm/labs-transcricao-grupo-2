@@ -1,136 +1,161 @@
-img {
-	max-width: 100%;
-}
-
-html, body {
-	/* Para fazer o rodapé ficar sempre na parte inferior da página ;) */
-	min-height: 100vh;
-
-}
-
 :root {
-	--cor-1: #b40a10; 
-	--cor-2: #ed1d24; 
-	--cor-3: #51ace4; 
-	--cor-4: #3477a6; 
-	--cor-5: #014f86;
-	--cor-6: #215274; 
-	--cor-7: #01497c; 
-	--cor-8: #013a63; 
-	--cor-9: #012a4a; 
+	--cor-primaria: #0D3B66;
+	--cor-secundaria: #51ACE4;
+	--cor-destaque: #00B7C2;
 
-	--bg: #f7fbff;
-	--text: #0f172a;
-	--muted: #475569;
-	--card: #ffffff;
-	--radius: 16px;
-	--shadow: 0 10px 30px rgba(0,0,0,.08);
+	--cor-neutra-clara: #F8FAFC;
+	--cor-neutra-escura: #1E1E1E;
+
+	--cor-sucesso: #38EBA8;
+	--cor-erro: #FF5C5C;
+
+	--sombra-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+	--transicao-padrao: 0.25s ease-in-out;
+
+	--fonte-titulo: "Montserrat", sans-serif;
+	--fonte-texto: "Inter", sans-serif;
+	--fonte-codigo: "JetBrains Mono", monospace;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--cor-primaria);
+	color: var(--cor-neutra-clara);
+	font-family: var(--fonte-texto);
+	line-height: 1.6;
 }
 
 .limitador {
-	max-width: 1200px;
-	margin: 0px auto;
-
-	/* Para fazer o rodapé ficar sempre na parte inferior da página ;) */
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-
-	font-family: 'Ubuntu', sans-serif;
-}
-
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
-	margin: 0;
-	font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-	color: var(--text);
-	background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
-}
-
-header {
-	position: sticky; top: 0; z-index: 100;
-	background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
-	border-bottom: 1px solid #e5eef6;
-}
-.nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.brand { display: flex; align-items: center; gap: .8rem; text-decoration: none; color: inherit; font-weight: 800; }
-.brand img { height: 36px; width: auto; }
-.nav-links { display: flex; gap: 1.2rem; align-items: center; }
-.nav-links a { text-decoration: none; color: var(--muted); font-weight: 600; }
-.nav-links a:hover { color: var(--cor-5); }
-.nav-cta { display: flex; gap:.6rem; align-items:center; }
-.hamb { display:none; background:none; border:0; font-size:1.8rem; }
-
-
-/* Mobile menu */
-@media (max-width: 920px) {
-	.nav-links { display: none; }
-	.hamb { display: block; }
-	.mobile { position: fixed; inset: 72px 0 auto 0; background: #fff; border-top: 1px solid #e5eef6; box-shadow: var(--shadow); display: none; }
-	.mobile a { display:block; padding: 1rem 1.2rem; color: var(--muted); text-decoration:none; border-bottom:1px dashed #eaeaea; }
-	.mobile a:focus, .mobile a:hover { background: #f3f9ff; color: var(--cor-5); }
-	.mobile.show { display: block; }
-}
-
-.mobile {
-  display: none; /* Escondido por padrão */
-  position: fixed;
-  inset: 72px 0 auto 0;
-  background: #fff;
-  border-top: 1px solid #e5eef6;
-  box-shadow: 0 4px 15px rgba(0,0,0,.1);
-  z-index: 99;
-}
-
-.mobile a {
-  display: block;
-  padding: 1rem 1.2rem;
-  color: var(--muted);
-  text-decoration: none;
-  border-bottom: 1px dashed #eaeaea;
-}
-
-.mobile a:hover {
-  background: #f3f9ff;
-  color: var(--cor-5);
-}
-
-.mobile.show {
-  display: block; /* Só aparece quando tiver essa classe */
-}
-
-.conteudo {
-	/* Para fazer o rodapé ficar sempre na parte inferior da página ;) */
-	flex: 1 1 auto;
-}
-
-.rodape {
-	text-align: center;
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
 	padding: 2rem;
 }
 
-.link-rodape, .link-rodape:hover {
-	color: black;
-	text-decoration: none;
+
+header {
+	background-color: var(--cor-primaria);
+	padding: 1rem 0;
+	border-bottom: 2px solid var(--cor-secundaria);
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: Chetta;
+header .logo {
+	font-family: var(--fonte-titulo);
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: white;
+	display: flex;
+	align-items: center;
+	gap: .6rem;
 }
 
-a{
-	text-decoration: none;
-	color: inherit;
-}
-
-.fa{
-	font-size: 1.5rem;
+header .logo img {
+	height: 40px;
+	width: auto;
 }
 
 .btn-primary {
-	background-color: var(--cor-6);
-	border-color: var(--cor-6);
+	background-color: var(--cor-destaque);
+	border: none;
+	padding: .7rem 1.4rem;
+	border-radius: 12px;
+	font-family: var(--fonte-titulo);
+	font-weight: 600;
 	color: white;
+	cursor: pointer;
+	transition: var(--transicao-padrao);
+}
+
+.btn-primary:hover {
+	background-color: var(--cor-secundaria);
+	transform: translateY(-2px);
+}
+
+input[type="file"],
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+	width: 100%;
+	padding: .8rem;
+	margin-top: .4rem;
+	border-radius: 10px;
+	border: 1px solid var(--cor-secundaria);
+	background-color: var(--cor-neutra-clara);
+	color: var(--cor-neutra-escura);
+	font-family: var(--fonte-texto);
+	transition: var(--transicao-padrao);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	border-color: var(--cor-destaque);
+	box-shadow: 0 0 0 3px rgba(0, 183, 194, 0.3);
+}
+
+.card {
+	background-color: var(--cor-neutra-clara);
+	color: var(--cor-neutra-escura);
+	border-radius: 16px;
+	padding: 1.6rem;
+	box-shadow: var(--sombra-card);
+	margin: 1.5rem 0;
+	transition: var(--transicao-padrao);
+}
+
+.card:hover {
+	transform: translateY(-4px);
+}
+
+.sucesso {
+	background-color: var(--cor-sucesso);
+	color: #063b2a;
+	padding: .8rem 1rem;
+	border-radius: 8px;
+	margin: .8rem 0;
+}
+
+.erro {
+	background-color: var(--cor-erro);
+	color: white;
+	padding: .8rem 1rem;
+	border-radius: 8px;
+	margin: .8rem 0;
+}
+
+pre,
+code {
+	background-color: #0c2743;
+	padding: .8rem;
+	border-radius: 10px;
+	color: #A5EBFF;
+	font-family: var(--fonte-codigo);
+	font-size: .95rem;
+	overflow-x: auto;
+}
+
+.fade-in {
+	animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; transform: translateY(10px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+	.limitador {
+		padding: 1.2rem;
+	}
+
+	header .logo {
+		font-size: 1.4rem;
+	}
+
+	.card {
+		padding: 1.2rem;
+	}
 }

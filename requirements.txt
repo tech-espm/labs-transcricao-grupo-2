@@ -6,3 +6,4 @@ flask
 ffmpeg-python
 whisper
 prometheus-client
+langdetect
