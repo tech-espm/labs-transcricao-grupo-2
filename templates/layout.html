@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transcrição de Áudio com OpenAI</title>
 
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/img/audiolab.png">
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     {% block head %}{% endblock %}
@@ -17,20 +20,22 @@
     <div class="limitador">
         <nav class="navbar navbar-expand-md bg-white sticky-top border-bottom">
             <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="#" aria-label="SintoMed - Início">
-                <img src="/static/img/audiolab.png" alt="Logotipo AudioLab" class="brand-logo" style="max-width: 100px; border-radius: 50%;" />
-            </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <a class="navbar-brand d-flex align-items-center gap-2" href="/" aria-label="AudioLab - Início">
+                    <img src="/static/img/audiolab.png" alt="Logotipo AudioLab" class="brand-logo" style="max-width: 100px; border-radius: 50%;" />
+                </a>
 
-            <div class="collapse navbar-collapse" id="mainNav">
-                </ul>
-                <div class="d-flex gap-2">
-                <a href="/sobre" class="btn btn-primary">Sobre</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/sobre">Sobre</a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
             </div>
         </nav>
 
