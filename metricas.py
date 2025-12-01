@@ -4,9 +4,6 @@ from datetime import datetime, timedelta
 from flask import Response
 import threading
 
-# --- Contadores acumulados (Prometheus) ---
-#Prometheus é uma biblioteca que transforma seu código Flask em um sistema monitorável, permitindo acompanhar em tempo real quantas operações deram certo, 
-# quantas falharam e qual é a taxa de sucesso.
 UPLOADS_VALIDOS = Counter(
     "uploads_validos_total",
     "Quantidade de uploads que passaram na validacao"
@@ -20,8 +17,7 @@ PROCESSAMENTOS_ERRO = Counter(
     "Quantidade de uploads validos que falharam no processamento"
 )
 
-# --- Janela deslizante em memoria (ultimas 24h) ---
-_EVENTOS = deque()  # cada item: (timestamp: datetime, valido: bool, sucesso: bool)
+_EVENTOS = deque()
 _LOCK = threading.Lock()
 
 def registrar_upload_valido():
@@ -47,17 +43,16 @@ def _limpar_janela_24h(agora=None):
 def taxa_sucesso_24h():
     with _LOCK:
         _limpar_janela_24h()
-        # Consideramos apenas eventos de processamento (onde sucesso é True/False)
         proc = [e for e in _EVENTOS if e[2] is not None]
         if not proc:
-            return 1.0  # se não houve processamentos nas últimas 24h, adotamos 100% (ajuste se desejar)
+            return 1.0 
         ok = sum(1 for e in proc if e[2] is True)
         return ok / len(proc)
 
 def resumo_24h():
     with _LOCK:
         _limpar_janela_24h()
-        validos = sum(1 for e in _EVENTOS if e[1] is True and e[2] is None)  # registros de "validou upload"
+        validos = sum(1 for e in _EVENTOS if e[1] is True and e[2] is None) 
         proc = [e for e in _EVENTOS if e[2] is not None]
         ok = sum(1 for e in proc if e[2] is True)
         falha = sum(1 for e in proc if e[2] is False)

@@ -23,7 +23,7 @@ Resposta:
   "message": "Upload realizado com sucesso"
 }
 
-2. Transcrição de Áudio
+2.Transcrição de Áudio
 **POST /transcrever**
 
 Descrição: Transcreve o áudio enviado anteriormente.
@@ -34,7 +34,6 @@ Entrada:
   "file_id": "123abc"
 }
 
-
 Resposta:
 
 {
@@ -42,8 +41,7 @@ Resposta:
   "transcription": "Olá, este é um exemplo de transcrição."
 }
 
-3. Tradução de Texto
-
+3.Tradução de Texto
 **POST /traduzir**
 
 Descrição: Traduz a transcrição para o idioma especificado.

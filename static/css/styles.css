@@ -159,3 +159,13 @@ code {
 		padding: 1.2rem;
 	}
 }
+
+.rodape{
+	color: #1E1E1E;
+	text-decoration: none;
+	text-align: center;
+}
+small{
+	color: black;
+	text-decoration:double;
+}

@@ -310,6 +310,9 @@ def healthz():
 def metricas():
    return metricas_endpoint()
 
+@app.route('/sobre', methods=['GET'])
+def sobre():
+   return render_template('index/sobre.html')
 
 if __name__ == '__main__':
    app.run(host=config.host, port=config.port, debug=True)

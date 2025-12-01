@@ -1,0 +1,272 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<style>
+    :root {
+        --azul-claro: #4ea3ff;
+        --azul-escuro: #0b1f33;
+        --cinza-claro: #f5f7fb;
+        --card-bg: #ffffff;
+        --radius: 18px;
+        --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: #202636;
+    }
+
+    .hero {
+        background: radial-gradient(circle at top left, var(--azul-claro), var(--azul-escuro));
+        color: #fff;
+        padding: 4rem 1rem;
+        border-radius: 50px;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .25rem .8rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        font-size: .875rem;
+    }
+
+    .hero-card {
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: 1.9rem;
+        margin-bottom: .5rem;
+        color: var(--azul-escuro);
+    }
+
+    .section-subtitle {
+        color: #6b7280;
+        max-width: 640px;
+    }
+
+    .card-custom {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        border: none;
+        box-shadow: var(--shadow);
+        height: 100%;
+    }
+
+    .tech-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: .25rem .7rem;
+        border-radius: 999px;
+        background: #eef2ff;
+        font-size: .8rem;
+        margin: 0 .25rem .25rem 0;
+    }
+
+    .avatar {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <div class="hero-badge mb-3">
+                    <span>🎙️ AudioLab</span>
+                    <span class="badge bg-light text-dark">Laboratório Experimental – Sistemas de Informação ESPM</span>
+                </div>
+
+                <h1 class="mb-3">Sobre o Projeto AudioLab</h1>
+
+                <p class="lead mb-4">
+                    O AudioLab é uma plataforma criada para transformar áudios em texto com precisão 
+                    utilizando inteligência artificial — incluindo transcrição e tradução automática.
+                </p>
+
+                <p class="mb-0">
+                    O objetivo é facilitar rotinas de estudo, entrevistas, reuniões, legendagem e qualquer 
+                    atividade que dependa da conversão de fala para texto.
+                </p>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-card">
+                    <h5 class="mb-3">Funcionalidades Principais</h5>
+                    <ul class="mb-3">
+                        <li><strong>Transcrição</strong> de áudios no idioma original.</li>
+                        <li><strong>Tradução automática</strong> para outros idiomas.</li>
+                        <li><strong>API REST</strong> para integração com outras aplicações.</li>
+                    </ul>
+                    <small class="text-white-50">Focado em eficiência, escalabilidade e monitoramento.</small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <h2 class="section-title">O que é o AudioLab?</h2>
+                <p class="section-subtitle">
+                    Um projeto acadêmico de Sistemas de Informação (ESPM) que utiliza modelos de IA para resolver 
+                    problemas reais envolvendo interpretação de áudio.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="card card-custom p-4">
+                    <h5>Objetivo</h5>
+                    <p class="mb-2">A API foi desenvolvida para:</p>
+                    <ul>
+                        <li>Receber arquivos de áudio enviados pelo usuário.</li>
+                        <li>Transcrever o conteúdo falado com alta precisão.</li>
+                        <li>Traduzir automaticamente para outros idiomas.</li>
+                    </ul>
+                    <p class="mb-0">Tudo via endpoints REST acessíveis a qualquer front-end.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-custom p-4">
+                    <h5>Fluxo de Funcionamento</h5>
+                    <ol class="mb-2">
+                        <li>Upload do arquivo.</li>
+                        <li>Validação do formato e tamanho.</li>
+                        <li>Envio para modelos de IA da OpenAI.</li>
+                        <li>Retorno em JSON com transcrição ou tradução.</li>
+                    </ol>
+                    <p class="mb-0">Inclui fluxo de monitoramento, métricas e controle de erros.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="section bg-white">
+    <div class="container">
+
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <h2 class="section-title">Tecnologias Utilizadas</h2>
+                <p class="section-subtitle">Combinamos ferramentas modernas com serviços de IA em nuvem.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card card-custom p-4">
+                    <h6>Back-end & API</h6>
+                    <p class="mb-2">Lógica do sistema desenvolvida com:</p>
+                    <div>
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Flask</span>
+                        <span class="tech-pill">OpenAI SDK</span>
+                    </div>
+                    <small class="text-muted">Responsável pelo upload, IA e monitoramento.</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-custom p-4">
+                    <h6>IA & Áudio</h6>
+                    <p class="mb-2">Modelos utilizados:</p>
+                    <div>
+                        <span class="tech-pill">gpt-4o-transcribe</span>
+                        <span class="tech-pill">whisper-1</span>
+                    </div>
+                    <small class="text-muted">Convertem fala em texto com alta precisão.</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-custom p-4">
+                    <h6>Infraestrutura</h6>
+                    <p class="mb-2">Ferramentas de estabilidade e monitoramento:</p>
+                    <div>
+                        <span class="tech-pill">Prometheus</span>
+                        <span class="tech-pill">/healthz</span>
+                        <span class="tech-pill">/metricas</span>
+                    </div>
+                    <small class="text-muted">Taxas de sucesso, falhas e uploads.</small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <h2 class="section-title">Quem Desenvolveu?</h2>
+                <p class="section-subtitle">Equipe responsável pelo AudioLab:</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="card card-custom p-4 text-center">
+                    <img src="/static/img/maria.png" class="avatar mx-auto mb-3">
+                    <h5 class="mb-1">Maria Gabriela Vieira dos Santos</h5>
+                    <p class="text-muted mb-2">Back-end & Integração com OpenAI</p>
+                    <p class="small mb-0">
+                        Responsável pelos endpoints, lógica de IA e experiência do usuário.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-custom p-4 text-center">
+                    <img src="/static/img/mateus.png" class="avatar mx-auto mb-3">
+                    <h5 class="mb-1">Mateus Carnevale Colmeal</h5>
+                    <p class="text-muted mb-2">Arquitetura & Monitoramento</p>
+                    <p class="small mb-0">
+                        Responsável pela arquitetura da API e fluxo de métricas.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

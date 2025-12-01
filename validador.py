@@ -7,9 +7,6 @@ import re
 load_dotenv()
 
 def validar_arquivo_audio():
-    """
-    Valida se o arquivo de áudio foi enviado e é do tipo correto
-    """
     if 'audio' not in request.files:
         return False, "Arquivo de áudio não enviado", 400
     
@@ -22,13 +19,12 @@ def validar_arquivo_audio():
     nome_arquivo = arquivo.filename.lower()
     if not any(nome_arquivo.endswith(ext) for ext in extensoes_permitidas):
         return False, "Tipo de arquivo não suportado", 415
-    
-    # Verifica o tamanho do arquivo 
+
     arquivo.seek(0, os.SEEK_END)
     tamanho = arquivo.tell()
     arquivo.seek(0)
     
-    if tamanho > 25 * 1024 * 1024:  # 25MB
+    if tamanho > 25 * 1024 * 1024:  
         return False, "Arquivo muito grande (máximo 25MB)", 413
     
     if tamanho == 0:
@@ -37,9 +33,6 @@ def validar_arquivo_audio():
     return True, arquivo, 200
 
 def validar_chave_api():
-    """
-    Valida se a API key está configurada
-    """
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key or api_key.strip() == "":
         return False, "API key não configurada", 500

@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 
-
 {% block body %}
 <div class="container py-5">
    <!-- Header -->
@@ -17,9 +16,7 @@
 
 
    <div class="row g-4">
-       <!-- Coluna esquerda: Upload + Gravação -->
-       <div class="col-lg-5">
-       <!-- Card de Upload -->
+       <div class="col-lg-6">
        <div class="card shadow-sm mb-4">
            <div class="card-body">
            <h5 class="card-title mb-3">
@@ -42,8 +39,6 @@
            </div>
        </div>
 
-
-       <!-- Card de Gravação -->
        <div class="card shadow-sm">
            <div class="card-body">
            <h5 class="card-title mb-3">
@@ -74,10 +69,7 @@
        </div>
        </div>
 
-
-       <!-- Coluna direita: Transcrição + Tradução -->
-       <div class="col-lg-7">
-       <!-- Card de Transcrição -->
+       <div class="col-lg-6">
        <div class="card shadow-sm mb-4">
            <div class="card-body">
            <div class="d-flex justify-content-between align-items-center mb-2">
@@ -89,7 +81,6 @@
                </button>
            </div>
 
-
            <div id="transcriptionResult" class="transcription-card" style="display:none;">
                <div id="transcriptionLoading" class="d-flex align-items-center mb-2" style="display:none;">
                <div class="spinner-border text-primary spinner-border-sm me-2" role="status">
@@ -99,11 +90,8 @@
                    <span class="fw-semibold">Transcrevendo seu áudio…</span>
                </div>
                </div>
-
-
                <p id="transcriptionText" class="mb-0" style="white-space: pre-wrap;"></p>
            </div>
-
 
            <p id="noTranscriptionHint" class="text-muted small mb-0">
                Nenhuma transcrição disponível ainda. Envie um arquivo ou grave um áudio para começar.
@@ -111,8 +99,6 @@
            </div>
        </div>
 
-
-       <!-- Card de Tradução -->
        <div class="card shadow-sm">
            <div class="card-body">
            <div class="d-flex justify-content-between align-items-center mb-3">
@@ -121,32 +107,28 @@
                </h5>
            </div>
 
-
            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
                <label for="targetLang" class="form-label mb-0 me-2">Idioma de destino:</label>
                <select id="targetLang" class="form-select form-select-sm" style="width:auto; min-width: 180px;">
-               <option value="en">🇺🇸 Inglês</option>
-               <option value="es">🇪🇸 Espanhol</option>
-               <option value="fr">🇫🇷 Francês</option>
-               <option value="pt-BR">🇧🇷 Português (Brasil)</option>
-               <option value="it">🇮🇹 Italiano</option>
-               <option value="de">🇩🇪 Alemão</option>
-               <option value="ja">🇯🇵 Japonês</option>
-               <option value="zh">🇨🇳 Mandarim</option>
-               <option value="ko">🇰🇷 Coreano</option>
+                    <option value="en">🇺🇸 Inglês</option>
+                    <option value="es">🇪🇸 Espanhol</option>
+                    <option value="fr">🇫🇷 Francês</option>
+                    <option value="pt-BR">🇧🇷 Português (Brasil)</option>
+                    <option value="it">🇮🇹 Italiano</option>
+                    <option value="de">🇩🇪 Alemão</option>
+                    <option value="ja">🇯🇵 Japonês</option>
+                    <option value="zh">🇨🇳 Mandarim</option>
+                    <option value="ko">🇰🇷 Coreano</option>
                </select>
-
 
                <button id="translateBtn" class="btn btn-success btn-sm">
                🌍 Traduzir transcrição
                </button>
 
-
                <button id="copyTranslationBtn" class="btn btn-outline-secondary btn-sm ms-auto" type="button">
                Copiar tradução
                </button>
            </div>
-
 
            <div id="translationResult" class="translation-card" style="display:none;">
                <div id="translationLoading" class="d-flex align-items-center mb-2" style="display:none;">
@@ -155,11 +137,8 @@
                </div>
                <span class="fw-semibold">Traduzindo texto…</span>
                </div>
-
-
                <p id="translationText" class="mb-0" style="white-space: pre-wrap;"></p>
            </div>
-
 
            <p id="noTranslationHint" class="text-muted small mb-0">
                A tradução aparecerá aqui depois que você transcrever um áudio e clicar em <strong>“Traduzir transcrição”</strong>.
@@ -170,7 +149,6 @@
    </div>
 </div>
 
-
 <style>
    .transcription-card,
    .translation-card {
@@ -180,13 +158,11 @@
        padding: 1rem 1.2rem;
    }
 
-
    .recording {
        animation: pulse 1.2s infinite;
        background-color: #dc3545 !important;
        border-color: #b02a37 !important;
    }
-
 
    @keyframes pulse {
        0%   { transform: scale(1); }
@@ -194,34 +170,25 @@
        100% { transform: scale(1); }
    }
 
-
    .spinner-active .spinner-border {
        animation-play-state: paused;
    }
-
-
 </style>
-
 
 <script>
    let mediaRecorder;
    let audioChunks = [];
-   let lastTranscript = ""; // guarda último texto transcrito (upload ou gravação)
-
-
+   let lastTranscript = ""; 
    const recordBtn = document.getElementById("recordBtn");
    const stopBtn = document.getElementById("stopBtn");
    const player = document.getElementById("player");
 
-
    const uploadForm = document.getElementById("uploadForm");
-
 
    const transcriptionDiv = document.getElementById("transcriptionResult");
    const transcriptionText = document.getElementById("transcriptionText");
    const transcriptionLoading = document.getElementById("transcriptionLoading");
    const noTranscriptionHint = document.getElementById("noTranscriptionHint");
-
 
    const translateBtn = document.getElementById("translateBtn");
    const translationDiv = document.getElementById("translationResult");
@@ -229,19 +196,15 @@
    const translationLoading = document.getElementById("translationLoading");
    const noTranslationHint = document.getElementById("noTranslationHint");
 
-
    const copyTranscriptionBtn = document.getElementById("copyTranscriptionBtn");
    const copyTranslationBtn = document.getElementById("copyTranslationBtn");
 
-
-   // --- Funções auxiliares ---
    function showTranscription(text) {
        lastTranscript = text || "";
        transcriptionText.textContent = lastTranscript || "(sem texto encontrado)";
        transcriptionDiv.style.display = "block";
        noTranscriptionHint.style.display = "none";
    }
-
 
    function startTranscriptionLoading() {
        transcriptionDiv.style.display = "block";
@@ -250,15 +213,10 @@
        noTranscriptionHint.style.display = "none";
    }    
 
-
    function stopTranscriptionLoading() {
        transcriptionLoading.style.display = "none";
-
-
-       // Remover qualquer classe de animação residual
        transcriptionLoading.classList.remove("spinner-active");
    }
-
 
    function startTranslationLoading() {
        translationDiv.style.display = "block";
@@ -267,31 +225,23 @@
        noTranslationHint.style.display = "none";
    }
 
-
    function stopTranslationLoading() {
        translationLoading.style.display = "none";
        translationLoading.classList.remove("spinner-active");
    }
 
-
-   // --- UPLOAD MANUAL (botão Transcrever) ---
    uploadForm.addEventListener("submit", async (event) => {
        event.preventDefault();
-
-
        const fileInput = document.getElementById("audioFile");
        if (!fileInput.files.length) {
        alert("Selecione um arquivo de áudio primeiro!");
        return;
        }
 
-
        const formData = new FormData();
        formData.append("audio", fileInput.files[0]);
 
-
        startTranscriptionLoading();
-
 
        try {
        const response = await fetch("/upload-audio", {
@@ -299,16 +249,13 @@
            body: formData
        });
 
-
        const result = await response.json();
-
 
        if (result.error) {
            stopTranscriptionLoading();
            transcriptionText.textContent = "❌ Erro: " + result.error;
            return;
        }
-
 
        stopTranscriptionLoading();
        showTranscription(result.text_original || result.texto || result.transcription || "");
@@ -318,34 +265,25 @@
        }
    });
 
-
-   // --- GRAVAÇÃO VIA MICROFONE ---
    recordBtn.addEventListener("click", async () => {
        try {
        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
        mediaRecorder = new MediaRecorder(stream);
        audioChunks = [];
 
-
        mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
-
 
        mediaRecorder.onstop = async () => {
            const blob = new Blob(audioChunks, { type: "audio/webm" });
            const file = new File([blob], "gravacao.webm", { type: "audio/webm" });
 
-
-           // mostra player
            player.src = URL.createObjectURL(blob);
            player.classList.remove("d-none");
-
 
            const formData = new FormData();
            formData.append("audio", file);
 
-
            startTranscriptionLoading();
-
 
            try {
            const response = await fetch("/upload-audio", {
@@ -353,16 +291,13 @@
                body: formData
            });
 
-
            const result = await response.json();
-
 
            if (result.error) {
                stopTranscriptionLoading();
                transcriptionText.textContent = "❌ Erro: " + result.error;
                return;
            }
-
 
            stopTranscriptionLoading();
            showTranscription(result.text_original || result.texto || result.transcription || "");
@@ -372,19 +307,16 @@
            }
        };
 
-
        mediaRecorder.start();
        recordBtn.disabled = true;
        recordBtn.classList.add("recording");
        recordBtn.textContent = "🔴 Gravando...";
        stopBtn.disabled = false;
 
-
        } catch (err) {
        alert("Não foi possível acessar o microfone. Verifique as permissões do navegador.");
        }
    });
-
 
    stopBtn.addEventListener("click", () => {
        if (mediaRecorder && mediaRecorder.state !== "inactive") {
@@ -396,20 +328,15 @@
        stopBtn.disabled = true;
    });
 
-
-   // --- TRADUÇÃO (usa /traduzir com texto, não áudio) ---
    translateBtn.addEventListener("click", async () => {
        if (!lastTranscript || !lastTranscript.trim()) {
        alert("Primeiro faça uma transcrição (upload ou gravação) antes de traduzir.");
        return;
        }
 
-
        const lang = document.getElementById("targetLang").value;
 
-
        startTranslationLoading();
-
 
        try {
        const response = await fetch("/traduzir", {
@@ -423,23 +350,18 @@
            })
        });
 
-
        const result = await response.json();
 
-
        stopTranslationLoading();
-
 
        if (result.error) {
            translationText.textContent = "❌ Erro: " + result.error;
            return;
        }
 
-
        translationText.textContent = result.translated_text || "(sem tradução)";
        noTranslationHint.style.display = "none";
        translationDiv.style.display = "block";
-
 
        } catch (err) {
        stopTranslationLoading();
@@ -447,8 +369,6 @@
        }
    });
 
-
-   // --- Copiar textos ---
    copyTranscriptionBtn.addEventListener("click", async () => {
        if (!lastTranscript) {
        alert("Não há transcrição para copiar ainda.");
@@ -462,7 +382,6 @@
        alert("Não foi possível copiar para a área de transferência.");
        }
    });
-
 
    copyTranslationBtn.addEventListener("click", async () => {
        const text = translationText.textContent.trim();
